@@ -1,38 +1,645 @@
-.App {
-  text-align: center;
+/* Header container */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Logo styles */
+.logo {
+  height: 50px; /* Fixed width */
+  border-radius: 10px; /* Subtle rounding for smooth edges */
+  cursor: pointer; /* Makes the logo clickable */
+  transition: transform 0.4s ease; /* Smooth hover effect */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.logo:hover {
+  transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+.custom-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navigation items container */
+.nav-items {
+  display: flex; /* Ensures nav items are displayed inline */
+  align-items: center; /* Align vertically */
+  margin: 5px;
+}
+
+/* Navigation list */
+.nav-items > ul {
+  display: flex; /* Horizontal layout */
+  list-style-type: none; /* Remove bullets */
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* Navigation list items */
+.nav-items > ul > li {
+  margin: 0 15px; /* Space between items */
+  padding: 10px 15px; /* Internal padding for click area */
+  font-size: 16px; /* Standard font size */
+  font-weight: 500; /* Slightly bold for emphasis */
+  color: #333; /* Neutral text color */
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out; /* Smooth hover effect */
+  cursor: pointer; /* Pointer cursor for interactivity */
+}
+
+.nav-items > ul > li:hover {
+  background-color: #f7f7f7; /* Light gray background on hover */
+  color: #007bff; /* Highlight color */
+  border-radius: 5px; /* Rounded hover effect */
+}
+
+/* Login button */
+.login-btn {
+  margin: 0 10px; /* Margin around the button */
+  padding: 8px 16px; /* Button padding for better click area */
+  background-color: #007bff; /* Primary blue background */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Standard font size */
+  font-weight: 500; /* Slightly bold for emphasis */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+}
+
+.login-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+.login-btn:active {
+  background-color: #004494; /* Even darker shade when pressed */
+  transform: scale(1); /* Reset scale on click */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .nav-items > ul {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: flex-start; /* Align to the left */
+  }
+
+  .nav-items > ul > li {
+    margin: 10px 0; /* Add vertical spacing between items */
+  }
+
+  .header {
+    padding: 10px; /* Reduce padding for smaller screens */
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.filter-container {
+  border-bottom:solid #ccc;
+  margin: 0 12%;
+}
+
+.whats-mind {
+  margin-bottom: 0;
+}
+
+.search-sec {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  height: 22px; /* Control height */
+  padding: 4px 8px; /* Add padding for better spacing */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Readable font size */
+  color: #333; /* Text color */
+  outline: none; /* Remove outline on focus */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* Subtle shadow for focus */
+}
+
+.filter-button {
+  margin: 10px 0 10px 10px; /* Space around button */
+  font-size: 14px; /* Readable font size */
+  font-weight: 600; /* Slightly bold text */
+  cursor: pointer; /* Pointer cursor */
+  text-transform: uppercase; /* Make text uppercase */
+  letter-spacing: 0.5px; /* Slightly spaced letters */
+  border-radius: 18px;
+  border: 1px solid rgba(2, 6, 12, 0.15);
+  padding: 8px 12px;
+  width: auto;
+  box-shadow: rgba(2, 6, 12, 0.04) 0px 2px 12px;
+  transition: background-color 0.1s ease-in, border-color 0.1s ease-in, box-shadow 0.1s ease-in, width 0.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.filter-button:hover {
+  background-color: #218838; /* Slightly darker green on hover */
+  border-color: #1e7e34; /* Darker border on hover */
+  transform: translateY(-2px); /* Lift button on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow on hover */
+}
+
+.filter-button:active {
+  background-color: #1e7e34; /* Even darker green when pressed */
+  border-color: #155724; /* Darker border when pressed */
+  transform: translateY(0); /* Reset lift when pressed */
+  box-shadow: none; /* Remove shadow when pressed */
+}
+
+.filter-button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.5); /* Add green glow for focus */
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  cursor: pointer;
+  margin: 0 11%;
+}
+
+.card:hover {
+  transform: scale(0.95) translateY(-10px); /* Moves back and scales slightly smaller */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  /* border: solid #f0f0f0; */
+  margin: 10px 10px 0 10px;
+  width: 273px;
+  /* height: 500px; */
+  border-radius: 10px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), /* For smooth scaling */
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.res-logo {
+  width: 273px;
+  height: 182px;
+  border-radius: 10px;
+}
+
+.res-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 2px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.res-info > * {
+  margin: 0 10px 8px 10px;
+  font-weight: normal;
+  width: fixed;
+}
+
+.res-name-menus {
+  font-size: 20px;
+  font-weight: bolder;
+  overflow: hidden;
+  display: -webkit-box;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.res-name {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.3px;
+  color: rgba(2, 6, 12, 0.92);
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  overflow-wrap: break-word;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.cuisines, .area-name {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.3px;
+  color: rgba(2, 6, 12, 0.6);
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  overflow-wrap: break-word;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+/* Shimmer.css */
+.shimmer-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 1% 11%;
+}
+
+.shimmer-card {
+  width: 273px;
+  height: 300px;
+  background: #f6f7f8;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-res-logo {
+  width: 273px;
+  height: 182px;
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+
+.shimmer-res-info {
+  width: 80%;
+  height: 20px;
+  background: #e0e0e0;
+  margin: 8px 16px;
+  border-radius: 4px;
+}
+
+.shimmer-res-name {
+  width: 60%;
+  height: 20px;
+  background: #e0e0e0;
+  margin: 8px 16px;
+  border-radius: 4px;
+}
+
+.shimmer-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+.menu-title-wrapper {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 1% 20%;
 }
 
-.App-link {
-  color: #61dafb;
+.menu-title-wrapper > h3 {
+  font-weight: 400;
+    font-size: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Wrapper for toggles */
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Adds space between toggles */
+  margin: 2% 0;
+}
+
+/* Switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+/* Hide the default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+/* Circle inside the slider */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+/* Checked state */
+.switch input:checked + .slider {
+  background-color: #4caf50;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Label styling */
+.switch-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.menu {
+  margin: 1% 20%;
+}
+
+.open-status-message-container {
+  background-color: #ffeee5;
+  border: 1px solid rgb(255, 238, 229);
+  padding: 16px 12px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.open-status-message { 
+  margin: 0;
+  color: #ff5200;
+  /* padding: 1% 2%; */
+  padding: 0 2%;
+  font-weight: 400;
+    font-size: 14px;
+}
+
+.res-info-container {
+  background: linear-gradient(rgb(255, 255, 255) -6.71%, rgb(235, 235, 242) 56.19%, rgb(223, 223, 231) 106.56%);
+  padding: 0px 16px 16px 16px;
+  border-bottom-left-radius: 36px;
+  border-bottom-right-radius: 36px;
+}
+
+res-info-container-child {
+  border-radius: 20px;
+  border: 1px solid rgba(2, 6, 12, 0.15);
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 8px 16px 0px;
+  margin-bottom: 20px;
+}
+
+.res-info-rating-cost {
+  padding: 2% 2% 1% 2%;
+  background-color: #fff;
+  border-bottom-left-radius: 36px;
+  border-bottom-right-radius: 36px;
+}
+
+.rating-sla {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.5px;
+  color: rgba(2, 6, 12, 0.92);
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  overflow-wrap: break-word;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.rating {
+  font-weight: 300;
+}
+
+.res-info-rating-cost > h3, h4, h5 {
+  margin: 0 0 2% 0;
+}
+
+.res-icon-container {
+  display: flex;
+}
+
+/* Section Container */
+section {
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Accordion Title */
+.accordion-wrapper {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+/* Button Styling */
+.toggle-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.toggle-button:focus {
+  outline: none;
+}
+
+/* Accordion Header */
+.accordion {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Menu Container */
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5%;
+  border-bottom: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1%;
+}
+
+/* Menu Card Content */
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  width: 70%; /* Take up 70% of the container */
+  box-sizing: border-box;
+}
+
+/* Name, Price, and Description Container */
+.menu-name-price-dec-container {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Menu Name */
+.menu-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.5%;
+}
+
+/* Menu Price */
+.menu-price {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #555;
+  margin-bottom: 1%;
+}
+
+/* Menu Description */
+.menu-description {
+  font-size: 0.9rem;
+  color: #777;
+  line-height: 1.4;
+  margin-top: 0.5%;
+}
+
+/* Menu Image Container */
+.menu-image-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Menu Image */
+.menu-image {
+  width: 60%;
+  height: 10%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.bottom-border-span {
+  display: block; /* Makes the span behave like a block element */
+  border-bottom: 16px solid rgba(2, 6, 12, 0.05); /* Bottom border styling */
+  margin-bottom: 1%; /* Adds spacing below */
+  width: 100%; /* Ensures it spans the full width */
+  /* height: 10px; Adds visible height */
+}
+
+.menu-search-button {
+  border-radius: 25px;
+  /* border: 1px solid #333; */
+  cursor: pointer;
+}
+
+.menu-search-button > .search {
+  width: 100%;
+  height: 40px;
+  font-weight: 400;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  background: #02060c0d;
+  color: #02060c0d;
+}
+
+.menu-search-palceholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.3px;
+  color: rgba(2, 6, 12, 0.6);
+  display: flex;
+  justify-content: center;
+}
+
+/* Wrapper to ensure full width */
+.menu-search-input-wrapper {
+  width: 100%; /* Makes it span the entire available width */
+  display: flex; /* Ensures proper alignment */
+  justify-content: center; /* Aligns the content horizontally */
+  padding: 10px 0; /* Optional padding */
+}
+
+/* Input styles */
+.menu-search-input {
+  width: 100%; /* Makes the input span the full width of its container */
+  max-width: 100%; /* Ensures no overflow */
+  padding: 10px 15px; /* Adds padding for better usability */
+  font-size: 16px; /* Sets a readable font size */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  outline: none; /* Removes default outline on focus */
+  box-sizing: border-box; /* Includes padding and border in width calculation */
+}
+
+/* Input focus styling */
+.menu-search-input:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* Adds a focus shadow */
+}
+
+/* Placeholder styling */
+.menu-search-input::placeholder {
+  color: #aaa; /* Placeholder text color */
+  font-style: italic; /* Optional style */
 }

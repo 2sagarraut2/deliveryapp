@@ -8,7 +8,7 @@ import useOnlineStatus from "../utils/useOnlineStatus.js";
 const AllRestaurants = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [ratingFilter, setRatingFilter] = useState(false);
-  const [searchText, setSearchText] = useState("");
+  // const [searchText, setSearchText] = useState("");
   const [filteredRestaurant, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const AllRestaurants = () => {
   const filterRestaurants = () => {
     if (!ratingFilter) {
       const filteredList = listOfRestaurants.filter(
-        (res) => res.info.avgRating > 4.5
+        (res) => res.info.avgRating > 4
       );
 
       setFilteredRestaurants(filteredList);
@@ -53,35 +53,35 @@ const AllRestaurants = () => {
     }
   };
 
-  const handleTypeText = (e) => {
-    setSearchText(e.target.value);
-  };
+  // const handleTypeText = (e) => {
+  //   setSearchText(e.target.value);
+  // };
 
-  const handleOnSearch = () => {
-    // console.log(searchText);
-    const searchedRestaurants = listOfRestaurants.filter(
-      (res) =>
-        res.info.name.toLowerCase().includes(searchText.toLowerCase()) ||
-        res.info.cuisines
-          .toString()
-          .toLowerCase()
-          .includes(searchText.toLowerCase()) ||
-        res.info.areaName.toLowerCase().includes(searchText.toLowerCase())
-    );
+  // const handleOnSearch = () => {
+  //   // console.log(searchText);
+  //   const searchedRestaurants = listOfRestaurants.filter(
+  //     (res) =>
+  //       res.info.name.toLowerCase().includes(searchText.toLowerCase()) ||
+  //       res.info.cuisines
+  //         .toString()
+  //         .toLowerCase()
+  //         .includes(searchText.toLowerCase()) ||
+  //       res.info.areaName.toLowerCase().includes(searchText.toLowerCase())
+  //   );
 
-    setFilteredRestaurants(searchedRestaurants);
-  };
+  //   setFilteredRestaurants(searchedRestaurants);
+  // };
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div>
-      <div className="filter-container">
-        <section>
+    <div className="px-44">
+      <div className="flex py-4 ">
+        {/* <section>
           <h3 className="whats-mind">What's on your mind?</h3>
-        </section>
-        <section className="search-sec">
-          <input
+        </section> */}
+        <section className="flex items-start px-2">
+          {/* <input
             value={searchText}
             onChange={handleTypeText}
             name="search-input"
@@ -90,25 +90,31 @@ const AllRestaurants = () => {
           />
           <button className="filter-button" onClick={handleOnSearch}>
             Search
-          </button>
+          </button> */}
 
-          <button className="filter-button" onClick={filterRestaurants}>
-            {ratingFilter
-              ? "Remove Ratings Filter"
-              : "Fiter Top Rated Restaurants"}
+          <button
+            className="rounded-full border-2 border-solid border-[#02060c26] py-2 px-4 font-normal text-sm"
+            onClick={filterRestaurants}
+          >
+            {ratingFilter ? "Ratings 4.0+ X" : "Ratings 4.0+"}
           </button>
         </section>
       </div>
-      <div className="card-container">
+      <div className="flex items-start flex-wrap cursor-pointer">
         {filteredRestaurant.map((restaurant) => {
           return (
-            <Link
-              className="custom-link"
+            <div
               key={restaurant.info.id}
-              to={"/restaurants/" + restaurant.info.id}
+              className="m-4 gap-y-1 grid grid-rows-1 grid-flow-row gap-1 hover:scale-95 translate-y-px"
             >
-              <RestaurantCard restaurantsData={restaurant} />
-            </Link>
+              <Link
+                className="no-underline decoration-inherit"
+                key={restaurant.info.id}
+                to={"/restaurants/" + restaurant.info.id}
+              >
+                <RestaurantCard restaurantsData={restaurant} />
+              </Link>
+            </div>
           );
         })}
       </div>

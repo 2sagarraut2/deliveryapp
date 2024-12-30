@@ -59,7 +59,7 @@ const VegNonVegFilter = (props) => {
   };
 
   return (
-    <div className="toggle-wrapper">
+    <div className="flex items-center my-4 mx-0 gap-5">
       <label className="switch">
         <input
           type="checkbox"

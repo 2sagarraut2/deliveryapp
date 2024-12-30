@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
+// import "../App.css";
 
 const Navigation = () => {
   const [login, setLogin] = useState(false);
@@ -10,29 +10,29 @@ const Navigation = () => {
   };
 
   return (
-    <div className="nav-items">
-      <ul>
-        <li>
-          <Link className="custom-link" to="/">
+    <div className="flex">
+      <ul className="flex py-4">
+        <li className="px-6 py-3">
+          <Link className="text-slate-950" to="/">
             Home
           </Link>
         </li>
-        <li>
-          <Link className="custom-link" to="/about">
+        <li className="px-6 py-3">
+          <Link className="text-slate-950" to="/about">
             About
           </Link>
         </li>
-        <li>
-          <Link className="custom-link" to="/contact">
+        <li className="px-6 py-3">
+          <Link className="text-slate-950" to="/contact">
             Contact
           </Link>
         </li>
-        <li>
-          <Link className="custom-link" to="/cart">
+        <li className="px-6 py-3">
+          <Link className="text-slate-950" to="/cart">
             Cart
           </Link>
         </li>
-        <button onClick={onClickLogin} className="login-btn">
+        <button onClick={onClickLogin} className="px-6 py-3 text-slate-950">
           {login ? "Logout" : "Login"}
         </button>
       </ul>

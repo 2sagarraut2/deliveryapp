@@ -2,19 +2,14 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constants";
-import MenuItem from "./MenuItem";
-import VegNonVegFilter from "./VegNonVegFilter";
+// import VegNonVegFilter from "./VegNonVegFilter";
 import RestaurantTitle from "./RestaurantTitle";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState([]);
-  const [filteredMenu, setFilteredMenu] = useState([]);
-  //   const [searchComponent, setSearchComponent] = useState(false);
-  const [open, setOpen] = useState(true);
-
-  const toggleAccordion = () => {
-    setOpen(!open);
-  };
+  // const [filteredMenu, setFilteredMenu] = useState([]);
+  const [showIndex, setShowIndex] = useState(null);
 
   const params = useParams();
   const { resId } = params;
@@ -29,12 +24,25 @@ const RestaurantMenu = () => {
 
     const json = await data.json();
     setResInfo(json);
-    setFilteredMenu(
-      json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-        ?.card?.itemCards
-    );
-    // console.log("useeffect" + json.data);
+    // setFilteredMenu(
+    //   json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+    //     ?.card?.itemCards
+    // );
+    // console.log("useeffect, " + json);
   };
+
+  // console.log(
+  //   resInfo.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+  // );
+
+  const categories =
+    resInfo.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
+        c?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.Dish"
+    );
 
   const {
     name,
@@ -49,15 +57,11 @@ const RestaurantMenu = () => {
     sla,
   } = resInfo?.data?.cards[2]?.card?.card?.info || {};
 
-  const { title } =
-    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card || {};
-
   //   component start here
   return resInfo.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="menu">
+    <div className="mx-72 p-8">
       <RestaurantTitle
         orderabilityCommunication={orderabilityCommunication}
         avgRatingString={avgRatingString}
@@ -70,76 +74,36 @@ const RestaurantMenu = () => {
       />
       <div>
         <div>
-          <span className="menu-title-wrapper">
-            <h3>-- Menu -- </h3>
+          <span className="flex justify-center my-4 mx-12">
+            <h3>-- Menu --</h3>
           </span>
         </div>
-        {/* search input will go here */}
-        <div>
-          {/* <div>
-            <SearchMenu
-              title={title}
-              countOfMenu={filteredMenu}
-              itemCards={filteredMenu}
-              searchComponent={searchComponent}
-              setSearchComponent={setSearchComponent}
-              filteredMenu={filteredMenu}
-              setFilteredMenu={setFilteredMenu}
-              resInfo={resInfo}
-            />
-          </div> */}
-
+        {/* <div>
           <div>
             <VegNonVegFilter
               resInfo={resInfo}
               setFilteredMenu={setFilteredMenu}
             />
           </div>
+        </div> */}
+        <div>
+          <span className="block mb-2 w-full"></span>
         </div>
         <div>
-          <span className="bottom-border-span"></span>
-        </div>
-        <div>
-          {/* Menu Item start here */}
+          {/* accordion is here */}
           <div>
-            <div className="accordion-wrapper">
-              <button className="toggle-button" onClick={toggleAccordion}>
-                <h3 className="accordion">
-                  {title} ({filteredMenu.length})
-                </h3>
-                <span>
-                  <span>
-                    {open ? (
-                      <i className="fas fa-solid fa-angle-up fa-lg"></i>
-                    ) : (
-                      <i className="fas fa-solid fa-angle-down fa-lg"></i>
-                    )}
-                  </span>
-                </span>
-              </button>
+            <div>
+              {categories.map((category, index) => (
+                // controlled component
+                <RestaurantCategory
+                  // filteredMenu={filteredMenu}
+                  key={category?.card?.card?.title}
+                  data={category?.card?.card}
+                  showItems={index === showIndex ? true : false}
+                  setShowIndex={() => setShowIndex(index)}
+                />
+              ))}
             </div>
-
-            <MenuItem
-              open={open}
-              setOpen={setOpen}
-              title={title}
-              //   countOfMenu={filteredMenu}
-              itemCards={filteredMenu}
-            />
-            {/* <MenuItem
-              title={
-                resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR
-                  ?.cards[4]?.card?.card?.title
-              }
-              countOfMenu={
-                resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR
-                  ?.cards[4]?.card?.card?.itemCards
-              }
-              itemCards={
-                resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR
-                  ?.cards[4]?.card?.card?.itemCards
-              }
-            /> */}
           </div>
         </div>
       </div>

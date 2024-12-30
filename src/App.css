@@ -1,11 +1,10 @@
-/* Header container */
-.header {
+Header container .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
   padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.102);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -23,10 +22,10 @@
   transform: scale(1.05); /* Slight enlargement on hover */
 }
 
-.custom-link {
+/* .custom-link {
   text-decoration: none;
   color: inherit;
-}
+} */
 
 /* Navigation items container */
 .nav-items {
@@ -102,7 +101,7 @@
 }
 
 .filter-container {
-  border-bottom:solid #ccc;
+  border-bottom: solid #ccc;
   margin: 0 12%;
 }
 
@@ -143,7 +142,8 @@
   padding: 8px 12px;
   width: auto;
   box-shadow: rgba(2, 6, 12, 0.04) 0px 2px 12px;
-  transition: background-color 0.1s ease-in, border-color 0.1s ease-in, box-shadow 0.1s ease-in, width 0.2s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: background-color 0.1s ease-in, border-color 0.1s ease-in,
+    box-shadow 0.1s ease-in, width 0.2s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .filter-button:hover {
@@ -184,8 +184,8 @@
   width: 273px;
   /* height: 500px; */
   border-radius: 10px;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), /* For smooth scaling */
-              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    /* For smooth scaling */ box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .res-logo {
@@ -235,7 +235,8 @@
   -webkit-box-orient: vertical;
 }
 
-.cuisines, .area-name {
+.cuisines,
+.area-name {
   display: flex;
   flex-wrap: wrap;
   font-size: 16px;
@@ -298,7 +299,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
   animation: shimmer 1.5s infinite;
 }
 
@@ -311,7 +317,6 @@
   }
 }
 
-
 .menu-title-wrapper {
   display: flex;
   justify-content: center;
@@ -320,7 +325,7 @@
 
 .menu-title-wrapper > h3 {
   font-weight: 400;
-    font-size: 16px;
+  font-size: 16px;
 }
 
 /* Wrapper for toggles */
@@ -403,17 +408,21 @@
   border-top-right-radius: 20px;
 }
 
-.open-status-message { 
+.open-status-message {
   margin: 0;
   color: #ff5200;
   /* padding: 1% 2%; */
   padding: 0 2%;
   font-weight: 400;
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .res-info-container {
-  background: linear-gradient(rgb(255, 255, 255) -6.71%, rgb(235, 235, 242) 56.19%, rgb(223, 223, 231) 106.56%);
+  background: linear-gradient(
+    rgb(255, 255, 255) -6.71%,
+    rgb(235, 235, 242) 56.19%,
+    rgb(223, 223, 231) 106.56%
+  );
   padding: 0px 16px 16px 16px;
   border-bottom-left-radius: 36px;
   border-bottom-right-radius: 36px;
@@ -454,7 +463,9 @@ res-info-container-child {
   font-weight: 300;
 }
 
-.res-info-rating-cost > h3, h4, h5 {
+.res-info-rating-cost > h3,
+h4,
+h5 {
   margin: 0 0 2% 0;
 }
 
@@ -578,7 +589,7 @@ section {
 
 .bottom-border-span {
   display: block; /* Makes the span behave like a block element */
-  border-bottom: 16px solid rgba(2, 6, 12, 0.05); /* Bottom border styling */
+  border-bottom: 16px solid #02060c0d; /* Bottom border styling */
   margin-bottom: 1%; /* Adds spacing below */
   width: 100%; /* Ensures it spans the full width */
   /* height: 10px; Adds visible height */
